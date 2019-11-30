@@ -1,0 +1,3092 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Timepad API",
+        "contact": {
+            "name": "Timepad API Team",
+            "url": "http://dev.timepad.ru/api/"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/v1/events": {
+            "get": {
+                "tags": [
+                    "\u0421\u043e\u0431\u044b\u0442\u0438\u044f"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043e \u0441\u043e\u0431\u044b\u0442\u0438\u044f\u0445 \u043d\u0435 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438. \u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432 \u0432 \u043c\u0438\u043d\u0443\u0442\u0443 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043e.",
+                "operationId": "getEvents",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u043e\u043b\u0435\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 \u0441\u043f\u0438\u0441\u043a\u0430 \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "integer",
+                        "default": 10,
+                        "maximum": 100,
+                        "minimum": 1
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "\u0421 \u043a\u0430\u043a\u043e\u0433\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430 \u0441\u043f\u0438\u0441\u043a\u0430 \u043d\u0430\u0447\u0430\u0442\u044c \u0432\u044b\u0432\u043e\u0434",
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "\u041f\u043e\u043b\u0435, \u043f\u043e \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "default": "+id"
+                    },
+                    {
+                        "name": "category_ids",
+                        "in": "query",
+                        "description": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438, \u043a \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u043f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0430\u0442 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "category_ids_exclude",
+                        "in": "query",
+                        "description": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438, \u043a \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u043d\u0435 \u043f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0430\u0442 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "cities",
+                        "in": "query",
+                        "description": "\u0413\u043e\u0440\u043e\u0434\u0430, \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0432\u044b\u0432\u043e\u0434\u0438\u0442\u044c",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cities_exclude",
+                        "in": "query",
+                        "description": "\u0413\u043e\u0440\u043e\u0434\u0430, \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u043d\u0435 \u0432\u044b\u0432\u043e\u0434\u0438\u0442\u044c",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organization_ids",
+                        "in": "query",
+                        "description": "\u041d\u043e\u043c\u0435\u0440\u0430 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0439, \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0432\u044b\u0432\u043e\u0434\u0438\u0442\u044c",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "organization_ids_exclude",
+                        "in": "query",
+                        "description": "\u041d\u043e\u043c\u0435\u0440\u0430 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0439, \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u043d\u0435 \u0432\u044b\u0432\u043e\u0434\u0438\u0442\u044c",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "event_ids",
+                        "in": "query",
+                        "description": "\u041d\u043e\u043c\u0435\u0440\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "event_ids_exclude",
+                        "in": "query",
+                        "description": "\u041d\u043e\u043c\u0435\u0440\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u043f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u044c",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "keywords",
+                        "in": "query",
+                        "description": "\u0421\u043b\u043e\u0432\u0430, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u044b\u0442\u044c \u0432 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "keywords_exclude",
+                        "in": "query",
+                        "description": "\u0421\u043b\u043e\u0432\u0430, \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u043d\u0435 \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \u0432 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "access_statuses",
+                        "in": "query",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0440\u0435\u0436\u0438\u043c\u043e\u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0430, \u0432 \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u043d\u0430\u0445\u043e\u0434\u044f\u0442\u0441\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f. \u0412\u043e\u0437\u043c\u043e\u0436\u043d\u044b\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f: private, draft, link_only, public. \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430\u043c",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "default": "public"
+                    },
+                    {
+                        "name": "moderation_statuses",
+                        "in": "query",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0443\u0440\u043e\u0432\u043d\u0435\u0439 \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0430, \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0445 \u0434\u043b\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u043c\u043e\u0434\u0435\u0440\u0430\u0442\u043e\u0440\u043e\u043c. \u0412\u043e\u0437\u043c\u043e\u0436\u043d\u044b\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f: featured (\u043e\u0434\u043e\u0431\u0440\u0435\u043d\u043e), shown (\u043e\u0442\u043a\u043b\u043e\u043d\u0435\u043d\u043e), not_moderated. (\u043d\u0435 \u043e\u0442\u043c\u043e\u0434\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e)",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "default": "featured,shown,not_moderated"
+                    },
+                    {
+                        "name": "price_min",
+                        "in": "query",
+                        "description": "\u0426\u0435\u043d\u0430, \u0432\u044b\u0448\u0435 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u0434\u043e\u043b\u0436\u0435\u043d \u0441\u0442\u043e\u0438\u0442\u044c \u0445\u043e\u0442\u044f \u0431\u044b \u043e\u0434\u0438\u043d \u0431\u0438\u043b\u0435\u0442 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "price_max",
+                        "in": "query",
+                        "description": "\u0426\u0435\u043d\u0430, \u043d\u0438\u0436\u0435 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u0434\u043e\u043b\u0436\u0435\u043d \u0441\u0442\u043e\u0438\u0442\u044c \u0445\u043e\u0442\u044f \u0431\u044b \u043e\u0434\u0438\u043d \u0431\u0438\u043b\u0435\u0442 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "starts_at_min",
+                        "in": "query",
+                        "description": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u043f\u043e\u0437\u0434\u043d\u0435\u0435 \u044d\u0442\u043e\u0433\u043e \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f",
+                        "type": "string",
+                        "format": "date-time",
+                        "default": "now"
+                    },
+                    {
+                        "name": "starts_at_max",
+                        "in": "query",
+                        "description": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0440\u0430\u043d\u044c\u0448\u0435 \u044d\u0442\u043e\u0433\u043e \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    {
+                        "name": "created_at_min",
+                        "in": "query",
+                        "description": "\u0414\u0430\u0442\u0430 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u043d\u0430 Timepad \u043f\u043e\u0437\u0434\u043d\u0435\u0435 \u044d\u0442\u043e\u0433\u043e \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    {
+                        "name": "created_at_max",
+                        "in": "query",
+                        "description": "\u0414\u0430\u0442\u0430 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u043d\u0430 Timepad \u0440\u0430\u043d\u044c\u0448\u0435 \u044d\u0442\u043e\u0433\u043e \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                        "schema": {
+                            "$ref": "#/definitions/EventsResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "view_private_events"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "\u0421\u043e\u0431\u044b\u0442\u0438\u044f"
+                ],
+                "summary": "\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                "description": "\u0421\u043e\u0431\u044b\u0442\u0438\u044f \u0441\u043e\u0437\u0434\u0430\u044e\u0442\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0442 \u0438\u043c\u0435\u043d\u0438 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0439. \u0423 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f, \u0432\u044b\u0437\u044b\u0432\u0430\u044e\u0449\u0435\u0433\u043e \u044d\u0442\u043e\u0442 \u043c\u0435\u0442\u043e\u0434, \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u044b\u0442\u044c \u043f\u0440\u0430\u0432\u0430 \u043d\u0430 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043e\u0435 \u0434\u0430\u043d\u043d\u043e\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438.",
+                "operationId": "addEvent",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0435\u043c\u043e\u0433\u043e \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "schema": {
+                            "$ref": "#/definitions/CreateEvent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043e\u0437\u0434\u0430\u043d\u043d\u043e\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                        "schema": {
+                            "$ref": "#/definitions/EventResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_events"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}": {
+            "get": {
+                "tags": [
+                    "\u0421\u043e\u0431\u044b\u0442\u0438\u044f"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u0435 \u043f\u043e ID",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u043f\u043e\u043b\u043d\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043f\u043e \u0441\u043e\u0431\u044b\u0442\u0438\u044e. \u0421 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u0430 fields \u043c\u043e\u0436\u043d\u043e \u0440\u0435\u0433\u0443\u043b\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043d\u0430\u0431\u043e\u0440 \u043f\u043e\u043b\u0435\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0432\u0435\u0440\u043d\u0435\u0442 \u043c\u0435\u0442\u043e\u0434.",
+                "operationId": "getSingleEvent",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u043e\u043b\u0435\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0417\u0430\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u0435\u043c\u043e\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                        "schema": {
+                            "$ref": "#/definitions/EventResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "view_private_events"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "\u0421\u043e\u0431\u044b\u0442\u0438\u044f"
+                ],
+                "summary": "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                "description": "\u0414\u043b\u044f \u0442\u043e\u0433\u043e, \u0447\u0442\u043e\u0431\u044b \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u0432\u0430\u043c \u043d\u0443\u0436\u043d\u043e \u0432\u044b\u0437\u044b\u0432\u0430\u0442\u044c \u043c\u0435\u0442\u043e\u0434 \u043e\u0442 \u0438\u043c\u0435\u043d\u0438 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f, \u043e\u0431\u043b\u0430\u0434\u0430\u044e\u0449\u0435\u0433\u043e \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u043c \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438, \u0432 \u043a\u043e\u0442\u043e\u0440\u043e\u043c \u0441\u043e\u0431\u044b\u0442\u0438\u0435 \u0431\u044b\u043b\u043e \u0441\u043e\u0437\u0434\u0430\u043d\u043e.",
+                "operationId": "editEvent",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0435\u043c\u043e\u0433\u043e \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0438\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0445 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "schema": {
+                            "$ref": "#/definitions/EditEvent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u041e\u0442\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                        "schema": {
+                            "$ref": "#/definitions/EventResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "edit_events"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/orders": {
+            "get": {
+                "tags": [
+                    "\u0417\u0430\u043a\u0430\u0437\u044b"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437\u044b \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                "description": "\u041c\u0435\u0442\u043e\u0434 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043a\u0430\u0437\u043e\u0432. \u0412\u043d\u0438\u043c\u0430\u043d\u0438\u0435! \u042d\u0442\u043e \u043d\u0435 \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u0441\u043f\u0438\u0441\u043a\u0430 \u0431\u0438\u043b\u0435\u0442\u043e\u0432, \u044d\u0442\u043e \u0438\u043c\u0435\u043d\u043d\u043e \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u0441\u043f\u0438\u0441\u043a\u0430 \u0437\u0430\u043a\u0430\u0437\u043e\u0432. \u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043f\u043e \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u044b\u043c \u0431\u0438\u043b\u0435\u0442\u0430\u043c \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u0432\u043d\u0443\u0442\u0440\u0438 \u043e\u0431\u044a\u0435\u043a\u0442\u0430 \u0437\u0430\u043a\u0430\u0437\u0430.",
+                "operationId": "getEventOrders",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 \u0441\u043f\u0438\u0441\u043a\u0430 \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "integer",
+                        "default": 10,
+                        "maximum": 250,
+                        "minimum": 1
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "\u0421 \u043a\u0430\u043a\u043e\u0433\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430 \u0441\u043f\u0438\u0441\u043a\u0430 \u043d\u0430\u0447\u0430\u0442\u044c \u0432\u044b\u0432\u043e\u0434",
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "email \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+                        "type": "string"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u043e\u043b\u0435\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u044f\u0442\u0441\u044f \u0437\u0430\u043a\u0430\u0437\u044b",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043a\u0430\u0437\u043e\u0432",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationOrdersResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "view_visitors"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "\u0417\u0430\u043a\u0430\u0437\u044b"
+                ],
+                "summary": "\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0437\u0430\u043a\u0430\u0437 (deprecated)",
+                "description": "\u0421\u043e\u0437\u0434\u0430\u0435\u0442 \u043d\u043e\u0432\u044b\u0439 \u0437\u0430\u043a\u0430\u0437 \u0434\u043b\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f. \u042d\u0442\u043e API \u0431\u043e\u043b\u0435\u0435 \u043d\u0435 \u043f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f. \u0412 \u0441\u043b\u0443\u0447\u0430\u0435, \u0435\u0441\u043b\u0438 \u0432\u0430\u0441 \u044d\u0442\u043e \u043d\u0430\u043f\u0440\u044f\u043c\u0443\u044e \u0437\u0430\u0442\u0440\u043e\u043d\u0443\u043b\u043e, \u043e\u0431\u0440\u0430\u0442\u0438\u0442\u0435\u0441\u044c \u0432 \u0441\u043b\u0443\u0436\u0431\u0443 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438.",
+                "operationId": "addOrder",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0435\u043c\u043e\u0433\u043e \u0437\u0430\u043a\u0430\u0437\u0430",
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrder"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043e\u0437\u0434\u0430\u043d\u043d\u044b\u0439 \u0437\u0430\u043a\u0430\u0437",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationOrderResponse"
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/v1/events/{event_id}/orders/{order_id}": {
+            "get": {
+                "tags": [
+                    "\u0417\u0430\u043a\u0430\u0437\u044b"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437 \u043f\u043e ID",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0437\u0430\u043a\u0430\u0437 \u043f\u043e \u0435\u0433\u043e ID. \u041e\u0431\u0440\u0430\u0449\u0430\u0435\u043c \u0432\u043d\u0438\u043c\u0430\u043d\u0438\u0435, \u0447\u0442\u043e \u043d\u043e\u043c\u0435\u0440 \u043d\u0430 \u0431\u0438\u043b\u0435\u0442\u0435 - \u044d\u0442\u043e ID \u0431\u0438\u043b\u0435\u0442\u0430, \u0430 \u043d\u0435 \u0437\u0430\u043a\u0430\u0437\u0430.",
+                "operationId": "getSingleEventOrder",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u043e\u043b\u0435\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f \u0437\u0430\u043a\u0430\u0437",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0437\u0430\u043a\u0430\u0437\u0430",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0417\u0430\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u0435\u043c\u044b\u0439 \u0437\u0430\u043a\u0430\u0437",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationOrderResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "view_visitors"
+                        ]
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "\u0417\u0430\u043a\u0430\u0437\u044b"
+                ],
+                "summary": "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437",
+                "description": "\u0418\u0437\u043c\u0435\u043d\u044f\u0435\u0442 \u0441\u043e\u0441\u0442\u0430\u0432 \u0437\u0430\u043a\u0430\u0437\u0430. \u042d\u0442\u043e\u0442 \u043c\u0435\u0442\u043e\u0434 \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0442\u043e\u043b\u044c\u043a\u043e \u0438\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043e\u0442\u0432\u0435\u0442\u044b \u043d\u0430 \u0432\u043e\u043f\u0440\u043e\u0441\u044b \u0430\u043d\u043a\u0435\u0442\u044b \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438, \u043f\u043e\u043c\u0435\u0442\u0438\u0442\u044c \u0431\u0438\u043b\u0435\u0442\u044b \u0432 \u0437\u0430\u043a\u0430\u0437\u0435 \u043a\u0430\u043a \u043f\u0440\u043e\u0448\u0435\u0434\u0448\u0438\u0435 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u0430 \u0438\u043b\u0438 \u043f\u043e\u043c\u0435\u0442\u0438\u0442\u044c \u0431\u0438\u043b\u0435\u0442\u044b \u0432 \u0437\u0430\u043a\u0430\u0437\u0435 \u043a\u0430\u043a \u043e\u043f\u043b\u0430\u0447\u0435\u043d\u043d\u044b\u0435 \u043e\u0444\u0444\u043b\u0430\u0439\u043d. \u041c\u0435\u043d\u044f\u0442\u044c \u0441\u043e\u0441\u0442\u0430\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435, \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b \u043f\u043b\u0430\u0442\u0435\u0436\u0430, \u0441\u043a\u0438\u0434\u043e\u043a \u0438 \u0442\u0430\u043a \u0434\u0430\u043b\u0435\u0435 \u0434\u0430\u043d\u043d\u044b\u0439 \u043c\u0435\u0442\u043e\u0434 \u043d\u0435 \u0434\u0430\u0435\u0442.",
+                "operationId": "editEventOrder",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f \u0437\u0430\u043a\u0430\u0437",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0437\u0430\u043a\u0430\u0437\u0430",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0438\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0445 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432 \u0437\u0430\u043a\u0430\u0437\u0430",
+                        "schema": {
+                            "$ref": "#/definitions/EditOrder"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0435\u043c\u044b\u0439 \u0437\u0430\u043a\u0430\u0437",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationOrderResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "edit_visitors"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/orders/{order_id}/approve": {
+            "patch": {
+                "tags": [
+                    "\u0417\u0430\u043a\u0430\u0437\u044b"
+                ],
+                "summary": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437",
+                "description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 \u0437\u0430\u043a\u0430\u0437\u0443 \u0441\u0442\u0430\u0442\u0443\u0441 - \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u043e",
+                "operationId": "approveEventOrder",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f \u0437\u0430\u043a\u0430\u0437",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0437\u0430\u043a\u0430\u0437\u0430",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0435\u043c\u044b\u0439 \u0437\u0430\u043a\u0430\u0437",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationOrderResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "edit_visitors"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/orders/{order_id}/reject": {
+            "patch": {
+                "tags": [
+                    "\u0417\u0430\u043a\u0430\u0437\u044b"
+                ],
+                "summary": "\u041e\u0442\u043a\u043b\u043e\u043d\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437",
+                "description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 \u0437\u0430\u043a\u0430\u0437\u0443 \u0441\u0442\u0430\u0442\u0443\u0441 - \u043e\u0442\u043a\u043b\u043e\u043d\u0435\u043d\u043e",
+                "operationId": "rejectEventOrder",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f \u0437\u0430\u043a\u0430\u0437",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0437\u0430\u043a\u0430\u0437\u0430",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0435\u043c\u044b\u0439 \u0437\u0430\u043a\u0430\u0437",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationOrderResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "edit_visitors"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/orders/{order_id}/delete": {
+            "patch": {
+                "tags": [
+                    "\u0417\u0430\u043a\u0430\u0437\u044b"
+                ],
+                "summary": "\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437",
+                "description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 \u0437\u0430\u043a\u0430\u0437\u0443 \u0441\u0442\u0430\u0442\u0443\u0441 - \u0443\u0434\u0430\u043b\u0435\u043d\u043e",
+                "operationId": "deleteEventOrder",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f \u0437\u0430\u043a\u0430\u0437",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0437\u0430\u043a\u0430\u0437\u0430",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0435\u043c\u044b\u0439 \u0437\u0430\u043a\u0430\u0437",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationOrderResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "edit_visitors"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/organizations": {
+            "post": {
+                "tags": [
+                    "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438"
+                ],
+                "summary": "\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044e",
+                "description": "\u0421\u043e\u0437\u0434\u0430\u0435\u0442 \u043d\u043e\u0432\u0443\u044e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044e \u043d\u0430 TimePad.",
+                "operationId": "addOrganization",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u043e\u0437\u0434\u0430\u043d\u043d\u043e\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrganization"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043e\u0437\u0434\u0430\u043d\u043d\u0430\u044f \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044f",
+                        "schema": {
+                            "$ref": "#/definitions/OrganizationResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_organizations"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/organizations/{organization_id}/hooks": {
+            "get": {
+                "tags": [
+                    "Webhooks"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a webhook'\u043e\u0432",
+                "description": "\u041f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a webhook'\u043e\u0432 \u0434\u043b\u044f \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u043e\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438. \u041f\u043e\u0434\u0440\u043e\u0431\u043d\u0435\u0435 \u043e \u0441\u0438\u0441\u0442\u0435\u043c\u0435 \u0445\u0443\u043a\u043e\u0432 \u0438 \u0435\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u043e\u0447\u0438\u0442\u0430\u0442\u044c \u0432 \u0441\u0442\u0430\u0442\u044c\u0435 http://dev.timepad.ru/api/hooks/",
+                "operationId": "getHooks",
+                "parameters": [
+                    {
+                        "name": "organization_id",
+                        "in": "path",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u0422\u0438\u043f \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c\u044b\u0445 webhook'\u043e\u0432",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a webhook'\u043e\u0432",
+                        "schema": {
+                            "$ref": "#/definitions/WebhooksApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "view_private_organizations"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Webhooks"
+                ],
+                "summary": "\u0421\u043e\u0437\u0434\u0430\u0442\u044c webhook \u0434\u043b\u044f \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                "description": "\u041f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0434\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043d\u043e\u0432\u044b\u0439 webhook \u0432 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044e. \u041f\u043e\u0434\u0440\u043e\u0431\u043d\u0435\u0435 \u043e \u0441\u0438\u0441\u0442\u0435\u043c\u0435 \u0445\u0443\u043a\u043e\u0432 \u0438 \u0435\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u043e\u0447\u0438\u0442\u0430\u0442\u044c \u0432 \u0441\u0442\u0430\u0442\u044c\u0435 http://dev.timepad.ru/api/hooks/",
+                "operationId": "addHook",
+                "parameters": [
+                    {
+                        "name": "organization_id",
+                        "in": "path",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u044f\u0435\u043c\u043e\u0433\u043e webhook'\u0430",
+                        "schema": {
+                            "$ref": "#/definitions/CreateHook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u041e\u0442\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 webhook",
+                        "schema": {
+                            "$ref": "#/definitions/WebhooksApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "edit_organizations_hooks"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/organizations/{organization_id}/hooks/{hook_id}": {
+            "get": {
+                "tags": [
+                    "Webhooks"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c webhook \u043f\u043e ID",
+                "description": "\u041f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u043d\u043e\u043c \u0434\u043b\u044f \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 webhook'\u0435. \u041f\u043e\u0434\u0440\u043e\u0431\u043d\u0435\u0435 \u043e \u0441\u0438\u0441\u0442\u0435\u043c\u0435 \u0445\u0443\u043a\u043e\u0432 \u0438 \u0435\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u043e\u0447\u0438\u0442\u0430\u0442\u044c \u0432 \u0441\u0442\u0430\u0442\u044c\u0435 http://dev.timepad.ru/api/hooks/",
+                "operationId": "getHook",
+                "parameters": [
+                    {
+                        "name": "organization_id",
+                        "in": "path",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hook_id",
+                        "in": "path",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 webhook'\u0430",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0412\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u043e\u0431\u044a\u0435\u043a\u0442 webhook'\u0430",
+                        "schema": {
+                            "$ref": "#/definitions/WebhookApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "view_private_organizations"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Webhooks"
+                ],
+                "summary": "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c webhook",
+                "description": "\u041f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0438\u0437\u043c\u0435\u043d\u0438\u0442\u044c webhook \u0432 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438. \u041f\u043e\u0434\u0440\u043e\u0431\u043d\u0435\u0435 \u043e \u0441\u0438\u0441\u0442\u0435\u043c\u0435 \u0445\u0443\u043a\u043e\u0432 \u0438 \u0435\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u043e\u0447\u0438\u0442\u0430\u0442\u044c \u0432 \u0441\u0442\u0430\u0442\u044c\u0435 http://dev.timepad.ru/api/hooks/",
+                "operationId": "editHook",
+                "parameters": [
+                    {
+                        "name": "organization_id",
+                        "in": "path",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hook_id",
+                        "in": "path",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 webhook'\u0430",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u041f\u043e\u043b\u044f \u0434\u043b\u044f \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f webhook'\u0430",
+                        "schema": {
+                            "$ref": "#/definitions/EditHook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u041e\u0442\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 webhook",
+                        "schema": {
+                            "$ref": "#/definitions/WebhookApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "edit_organizations_hooks"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/companies": {
+            "get": {
+                "tags": [
+                    "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0439",
+                "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432 \u044e\u0440\u0438\u0434\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u043b\u0438\u0446, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u0438\u043b\u0438 \u0441\u0447\u0435\u0442 \u0434\u043b\u044f \u043e\u043f\u043b\u0430\u0442\u044b \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u043e\u0442 \u044e\u0440\u043b\u0438\u0446\u0430. \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430\u043c \u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u0444\u0438\u043d\u0430\u043d\u0441\u043e\u0432\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438.",
+                "operationId": "eventCompaniesList",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 \u0441\u043f\u0438\u0441\u043a\u0430 \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "integer",
+                        "default": 100,
+                        "maximum": 250,
+                        "minimum": 1
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "\u0421 \u043a\u0430\u043a\u043e\u0433\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430 \u0441\u043f\u0438\u0441\u043a\u0430 \u043d\u0430\u0447\u0430\u0442\u044c \u0432\u044b\u0432\u043e\u0434",
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432",
+                        "schema": {
+                            "$ref": "#/definitions/CompaniesResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_cash_payments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/companies/{company_id}": {
+            "get": {
+                "tags": [
+                    "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u044b \u044e\u0440\u043b\u0438\u0446\u0430 \u043f\u043e ID",
+                "description": "\u0420\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u044b \u044e\u0440\u0438\u0434\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u043b\u0438\u0446\u0430, \u0437\u0430\u043f\u0440\u043e\u0441\u0438\u0432\u0448\u0435\u0433\u043e \u0441\u0447\u0435\u0442 \u0434\u043b\u044f \u043e\u043f\u043b\u0430\u0442\u044b \u0437\u0430\u043a\u0430\u0437\u0430 \u043e\u0442 \u044e\u0440\u043b\u0438\u0446\u0430. \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430\u043c \u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u0444\u0438\u043d\u0430\u043d\u0441\u043e\u0432\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438.",
+                "operationId": "eventCompany",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "company_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0420\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u044b \u044e\u0440\u043b\u0438\u0446\u0430",
+                        "schema": {
+                            "$ref": "#/definitions/CompanyResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_cash_payments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/company_payment_requests": {
+            "get": {
+                "tags": [
+                    "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u043d\u0430 \u043e\u043f\u043b\u0430\u0442\u0443 \u043e\u0442 \u044e\u0440\u043b\u0438\u0446\u0430",
+                "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432 \u043d\u0430 \u043e\u043f\u043b\u0430\u0442\u0443 \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u043e\u0442 \u044e\u0440\u043b\u0438\u0446\u0430. \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430\u043c \u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u0444\u0438\u043d\u0430\u043d\u0441\u043e\u0432\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438.",
+                "operationId": "eventCompanyPayments",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 \u0441\u043f\u0438\u0441\u043a\u0430 \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "integer",
+                        "default": 100,
+                        "maximum": 250,
+                        "minimum": 1
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "\u0421 \u043a\u0430\u043a\u043e\u0433\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430 \u0441\u043f\u0438\u0441\u043a\u0430 \u043d\u0430\u0447\u0430\u0442\u044c \u0432\u044b\u0432\u043e\u0434",
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432",
+                        "schema": {
+                            "$ref": "#/definitions/CompanyPaymentRequestsResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_cash_payments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/company_payment_requests/{company_payment_request_id}": {
+            "get": {
+                "tags": [
+                    "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u043d\u0430 \u043e\u043f\u043b\u0430\u0442\u0443 \u043e\u0442 \u044e\u0440\u043b\u0438\u0446\u0430 \u043f\u043e ID",
+                "description": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0435 \u043d\u0430 \u043e\u043f\u043b\u0430\u0442\u0443 \u0437\u0430\u043a\u0430\u0437\u0430 \u043e\u0442 \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u043e\u0433\u043e \u044e\u0440\u043b\u0438\u0446\u0430. \u041e\u0434\u043d\u043e \u044e\u0440\u043b\u0438\u0446\u043e \u043c\u043e\u0436\u0435\u0442 \u043f\u043e\u0434\u0430\u0442\u044c \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0440\u0430\u0437\u043d\u044b\u0445 \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432 \u043d\u0430 \u043e\u043f\u043b\u0430\u0442\u0443 \u043e\u0434\u043d\u043e\u0433\u043e \u0438 \u0442\u043e\u0433\u043e \u0436\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f. \u0421\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043a\u0430\u0437\u043e\u0432, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043f\u0440\u0438\u0432\u044f\u0437\u0430\u043d\u044b \u043a \u0437\u0430\u043f\u0440\u043e\u0441\u0443 \u043d\u0435 \u0434\u0435\u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439, \u0442.\u0435. \u044d\u0442\u043e \u0434\u043e\u0433\u0430\u0434\u043a\u0430 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043e \u0442\u043e\u043c, \u043a\u0430\u043a\u0438\u0435 \u0438\u043c\u0435\u043d\u043d\u043e \u0437\u0430\u043a\u0430\u0437\u044b \u043e\u043f\u043b\u0430\u0447\u0438\u0432\u0430\u044e\u0442\u0441\u044f \u0434\u0430\u043d\u043d\u044b\u043c \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u043c. \u0412 \u0440\u0435\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u044d\u0442\u0438 \u0437\u0430\u043a\u0430\u0437\u044b \u043c\u043e\u0433\u0443\u0442\u044c \u0431\u044b\u0442\u044c \u0434\u0440\u0443\u0433\u0438\u043c\u0438. \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430\u043c \u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u0444\u0438\u043d\u0430\u043d\u0441\u043e\u0432\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438.",
+                "operationId": "eventCompanyPayments",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "company_payment_request_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432",
+                        "schema": {
+                            "$ref": "#/definitions/CompanyPaymentRequestResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_cash_payments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/invoices": {
+            "get": {
+                "tags": [
+                    "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u044b\u0435 \u0441\u0447\u0435\u0442\u0430",
+                "description": "\u041c\u0435\u0442\u043e\u0434 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u044b\u0445 \u0441\u0447\u0435\u0442\u043e\u0432 \u0432 \u043e\u0442\u0432\u0435\u0442 \u043d\u0430 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0439 \u043e\u0431 \u043e\u043f\u043b\u0430\u0442\u0435 \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u043e\u0442 \u044e\u0440\u043b\u0438\u0446. \u041c\u0435\u0442\u043e\u0434 \u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430\u043c \u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u0444\u0438\u043d\u0430\u043d\u0441\u043e\u0432\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438.",
+                "operationId": "eventCompanyPayments",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 \u0441\u043f\u0438\u0441\u043a\u0430 \u0432\u044b\u0432\u0435\u0441\u0442\u0438",
+                        "type": "integer",
+                        "default": 100,
+                        "maximum": 250,
+                        "minimum": 1
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "\u0421 \u043a\u0430\u043a\u043e\u0433\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430 \u0441\u043f\u0438\u0441\u043a\u0430 \u043d\u0430\u0447\u0430\u0442\u044c \u0432\u044b\u0432\u043e\u0434",
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0441\u0447\u0435\u0442\u043e\u0432",
+                        "schema": {
+                            "$ref": "#/definitions/InvoicesResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_cash_payments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/events/{event_id}/invoices/{invoice_id}": {
+            "get": {
+                "tags": [
+                    "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u0447\u0435\u0442 \u043f\u043e ID",
+                "description": "\u041c\u0435\u0442\u043e\u0434 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u043e\u043c \u0441\u0447\u0435\u0442\u0435 \u0434\u043b\u044f \u043e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446\u0430.",
+                "operationId": "eventCompanyPayments",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "invoice_id",
+                        "in": "path",
+                        "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u0447\u0435\u0442\u0430",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u041e\u0442\u0432\u0435\u0442 \u0441 \u0434\u0430\u043d\u043d\u044b\u043c\u0438 \u0441\u0447\u0435\u0442\u0430",
+                        "schema": {
+                            "$ref": "#/definitions/InvoiceResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "add_cash_payments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/organizations/{organization_id}/custom_method/{method_name}": {
+            "post": {
+                "tags": [
+                    "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438"
+                ],
+                "summary": "\u0412\u044b\u0437\u0432\u0430\u0442\u044c \u043a\u0430\u0441\u0442\u043e\u043c\u043d\u044b\u0439 \u043c\u0435\u0442\u043e\u0434",
+                "description": "\u0412\u044b\u0437\u044b\u0432\u0430\u0435\u0442 \u043a\u0430\u0441\u0442\u043e\u043c\u043d\u044b\u0439 \u043c\u0435\u0442\u043e\u0434, \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u044b\u0439 \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u044c\u043d\u043e \u0434\u043b\u044f \u0432\u0430\u0448\u0435\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                "operationId": "callCustomMethod",
+                "parameters": [
+                    {
+                        "name": "organization_id",
+                        "in": "path",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "method_name",
+                        "in": "path",
+                        "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u0430\u0441\u0442\u043e\u043c\u043d\u043e\u0433\u043e \u043c\u0435\u0442\u043e\u0434\u0430",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b, \u043f\u0435\u0440\u0435\u0434\u0430\u0432\u0430\u0435\u043c\u044b\u0435 \u043c\u0435\u0442\u043e\u0434\u0443",
+                        "schema": {
+                            "$ref": "#/definitions/CallCustomMethod"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u041e\u0442\u0432\u0435\u0442 \u043a\u0430\u0441\u0442\u043e\u043c\u043d\u043e\u0433\u043e \u043c\u0435\u0442\u043e\u0434\u0430 \u0438 \u0441\u0442\u0430\u0442\u0443\u0441 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f",
+                        "schema": {
+                            "$ref": "#/definitions/CustomMethodApiResponse"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "timepad_implicit": [
+                            "call_custom_methods"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/dictionary/event_categories": {
+            "get": {
+                "tags": [
+                    "\u0421\u043b\u043e\u0432\u0430\u0440\u0438"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "operationId": "getEventsCategories",
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                        "schema": {
+                            "$ref": "#/definitions/EventsCategoriesApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/dictionary/event_statuses": {
+            "get": {
+                "tags": [
+                    "\u0421\u043b\u043e\u0432\u0430\u0440\u0438"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "operationId": "getEventsStatuses",
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                        "schema": {
+                            "$ref": "#/definitions/EventsStatusesApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/dictionary/tickets_statuses": {
+            "get": {
+                "tags": [
+                    "\u0421\u043b\u043e\u0432\u0430\u0440\u0438"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                "operationId": "getTicketsStatuses",
+                "responses": {
+                    "200": {
+                        "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                        "schema": {
+                            "$ref": "#/definitions/TicketsStatusesApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/oauth/authorize": {
+            "get": {
+                "tags": [
+                    "\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0442\u043e\u043a\u0435\u043d \u0434\u043b\u044f \u0440\u0430\u0431\u043e\u0442\u044b \u0441 API",
+                "description": "\u0424\u0443\u043d\u043a\u0446\u0438\u044f \u0432 \u0437\u0430\u043a\u0440\u044b\u0442\u043e\u043c \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0438. \u0414\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f client_id \u043e\u0431\u0440\u0430\u0449\u0430\u0439\u0442\u0435\u0441\u044c \u0432 \u0441\u043b\u0443\u0436\u0431\u0443 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438. \u041a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0435 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u044d\u0442\u043e\u0433\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u043f\u0435\u0440\u0435\u043d\u0430\u043f\u0440\u0430\u0432\u0438\u0442 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u043d\u0430 \u0444\u043e\u0440\u043c\u0443 \u043b\u043e\u0433\u0438\u043d\u0430",
+                "operationId": "authorize",
+                "parameters": [
+                    {
+                        "name": "client_id",
+                        "in": "query",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043a\u043b\u0438\u0435\u043d\u0442\u0430",
+                        "type": "string"
+                    },
+                    {
+                        "name": "redirect_uri",
+                        "in": "query",
+                        "description": "\u0421\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u0443\u044e \u043f\u0440\u043e\u0438\u0437\u043e\u0439\u0434\u0451\u0442 \u0440\u0435\u0434\u0438\u0440\u0435\u043a\u0442",
+                        "type": "string"
+                    },
+                    {
+                        "name": "response_type",
+                        "in": "query",
+                        "description": "\u0412\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u043c\u044b\u0439 \u0442\u0438\u043f \u043e\u0442\u0432\u0435\u0442\u0430. \u0415\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0435 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u043c\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 - token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "scope",
+                        "in": "query",
+                        "description": "\u0417\u0430\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u0435\u043c\u044b\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435\u043c \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e. \u0412\u043e\u0437\u043c\u043e\u0436\u043d\u044b\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f: add_events, add_organizations, edit_events, view_private_events, view_visitors, edit_visitors, add_cash_payments, edit_organizations_hooks",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "\u041f\u0435\u0440\u0435\u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043d\u0430 \u0444\u043e\u0440\u043c\u0443 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f"
+                    }
+                }
+            }
+        },
+        "/introspect": {
+            "get": {
+                "tags": [
+                    "\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435 API",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0442\u043e\u043a\u0435\u043d\u0435 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u0443 ietf-oauth-introspection",
+                "operationId": "introspectToken",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0442\u043e\u043a\u0435\u043d\u0430",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435 API",
+                        "schema": {
+                            "$ref": "#/definitions/Introspect"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438"
+                ],
+                "summary": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435 API",
+                "description": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0442\u043e\u043a\u0435\u043d\u0435 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u0443 ietf-oauth-introspection. \u0410\u043d\u0430\u043b\u043e\u0433\u0438\u0447\u0435\u043d \u043c\u0435\u0442\u043e\u0434\u0443 'GET /introspect', \u043d\u043e \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d \u0432 \u0442\u043e\u043c \u0441\u043b\u0443\u0447\u0430\u0435, \u043a\u043e\u0433\u0434\u0430 \u043d\u0443\u0436\u043d\u043e \u043f\u043e \u043a\u0430\u043a\u0438\u043c-\u043b\u0438\u0431\u043e \u043f\u0440\u0438\u0447\u0438\u043d\u0430\u043c \u0441\u043a\u0440\u044b\u0442\u044c \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c\u044b\u0439 \u0442\u043e\u043a\u0435\u043d.",
+                "operationId": "introspectTokenPost",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "formData",
+                        "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0442\u043e\u043a\u0435\u043d\u0430",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435 API",
+                        "schema": {
+                            "$ref": "#/definitions/Introspect"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "TicketTypeRequest": {
+            "properties": {
+                "id": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0433\u043e \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "integer"
+                },
+                "price": {
+                    "description": "\u0426\u0435\u043d\u0430 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0433\u043e \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "integer"
+                },
+                "status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "sale_starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u043f\u0440\u043e\u0434\u0430\u0436\u0438 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "sale_ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u043f\u0440\u043e\u0434\u0430\u0436\u0438 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "send_personal_links": {
+                    "description": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f \u0431\u0438\u043b\u0435\u0442\u043e\u0432 \u0441 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u043e\u0439 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0441\u0441\u044b\u043b\u043e\u043a",
+                    "type": "boolean"
+                },
+                "limit": {
+                    "description": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u043d\u0430 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0431\u0438\u043b\u0435\u0442\u043e\u0432 \u044d\u0442\u043e\u0433\u043e \u0442\u0438\u043f\u0430",
+                    "type": "boolean"
+                }
+            }
+        },
+        "DeleteOrder": {},
+        "CreateHook": {
+            "required": [
+                "url",
+                "type"
+            ],
+            "properties": {
+                "url": {
+                    "description": "URL-\u0430\u0434\u0440\u0435\u0441\u0441 \u0434\u043b\u044f \u043a\u043e\u043b\u0431\u0435\u043a\u0430 \u043f\u0440\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "type": "string"
+                },
+                "secret": {
+                    "description": "\u0421\u0435\u043a\u0440\u0435\u0442\u043d\u0430\u044f \u0444\u0440\u0430\u0437\u0430 \u0434\u043b\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438 webhook'\u043e\u0432",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "\u0422\u0438\u043f webhook'\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "CreateOrganization": {
+            "required": [
+                "name",
+                "subdomain",
+                "phone"
+            ],
+            "properties": {
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                    "type": "string"
+                },
+                "subdomain": {
+                    "description": "URL-\u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u0432 \u0422\u0430\u0439\u043c\u043f\u0430\u0434\u0435 (***.timepad.ru)",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "LocationInclude": {
+            "properties": {
+                "city": {
+                    "description": "\u0413\u043e\u0440\u043e\u0434 \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "\u0410\u0434\u0440\u0435\u0441 \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                }
+            }
+        },
+        "EditOrderStatusAbstract": {},
+        "EditOrderPayment": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "paid_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043f\u043b\u0430\u0442\u044b \u0437\u0430\u043a\u0430\u0437\u0430",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "amount": {
+                    "description": "\u0421\u0443\u043c\u043c\u0430 \u0437\u0430\u043a\u0430\u0437\u0430",
+                    "type": "number",
+                    "format": "float"
+                },
+                "payment_type": {
+                    "description": "\u0422\u0438\u043f \u043f\u043b\u0430\u0442\u0435\u0436\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "CallCustomMethod": {
+            "properties": {
+                "args": {
+                    "description": "\u0410\u0440\u0433\u0443\u043c\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043d\u0443\u0436\u043d\u043e \u043f\u0435\u0440\u0435\u0434\u0430\u0442\u044c \u0432\u044b\u0437\u044b\u0432\u0430\u0435\u043c\u043e\u043c\u0443 \u043c\u0435\u0442\u043e\u0434\u0443",
+                    "type": "object"
+                }
+            }
+        },
+        "OrganizationInclude": {
+            "properties": {
+                "id": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u0432 \u0422\u0430\u0439\u043c\u043f\u0430\u0434\u0435",
+                    "type": "integer"
+                },
+                "subdomain": {
+                    "description": "URL-\u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u0432 \u0422\u0430\u0439\u043c\u043f\u0430\u0434\u0435 (***.timepad.ru)",
+                    "type": "string"
+                }
+            }
+        },
+        "EditHook": {
+            "properties": {
+                "url": {
+                    "description": "URL-\u0430\u0434\u0440\u0435\u0441\u0441 \u0434\u043b\u044f \u043a\u043e\u043b\u0431\u0435\u043a\u0430 \u043f\u0440\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "type": "string"
+                },
+                "secret": {
+                    "description": "\u0421\u0435\u043a\u0440\u0435\u0442\u043d\u0430\u044f \u0444\u0440\u0430\u0437\u0430 \u0434\u043b\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438 webhook'\u043e\u0432",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 webhook'\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "TicketInclude": {
+            "required": [
+                "ticket_type_id"
+            ],
+            "properties": {
+                "answers": {
+                    "description": "\u041e\u0442\u0432\u0435\u0442\u044b \u043d\u0430 \u0430\u043d\u043a\u0435\u0442\u0443 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "object"
+                },
+                "ticket_type_id": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "CategoryInclude": {
+            "properties": {
+                "id": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0432 \u0422\u0430\u0439\u043c\u043f\u0430\u0434\u0435",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0432 \u0422\u0430\u0439\u043c\u043f\u0430\u0434\u0435",
+                    "type": "string"
+                }
+            }
+        },
+        "EditOrder": {
+            "properties": {
+                "visitors": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0432\u0438\u0434\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EditOrderVisitors"
+                    }
+                },
+                "answers": {
+                    "description": "\u041e\u0442\u0432\u0435\u0442\u044b \u043d\u0430 \u0430\u043d\u043a\u0435\u0442\u0443 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "object",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "payment": {
+                    "description": "\u041f\u043b\u0430\u0442\u0451\u0436",
+                    "$ref": "#/definitions/EditOrderPayment"
+                }
+            }
+        },
+        "RejectOrder": {},
+        "EditOrderAttendance": {
+            "properties": {
+                "starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043f\u043e\u0441\u0435\u0449\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u0443\u0445\u043e\u0434\u0430 \u0441 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "CreateOrder": {
+            "required": [
+                "tickets",
+                "answers"
+            ],
+            "properties": {
+                "tickets": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0432\u0438\u0434\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TicketInclude"
+                    }
+                },
+                "answers": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0432\u0438\u0434\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "promocodes": {
+                    "description": "\u041f\u0440\u043e\u043c\u043e\u043a\u043e\u0434\u044b",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "subscribed_to_newsletter": {
+                    "description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u043d\u0430 \u0430\u043d\u043e\u043d\u0441\u044b \u0441\u043e\u0431\u044b\u0442\u0438\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430",
+                    "type": "boolean"
+                }
+            }
+        },
+        "EditOrderVisitors": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "integer"
+                },
+                "answers": {
+                    "description": "\u041e\u0442\u0432\u0435\u0442\u044b \u043d\u0430 \u0430\u043d\u043a\u0435\u0442\u0443 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "attendance": {
+                    "description": "\u041f\u043e\u0441\u0435\u0449\u0435\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "$ref": "#/definitions/EditOrderAttendance"
+                }
+            }
+        },
+        "CreateEvent": {
+            "required": [
+                "organization",
+                "name",
+                "starts_at",
+                "categories"
+            ],
+            "properties": {
+                "organization": {
+                    "description": "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044f, \u043f\u0440\u043e\u0432\u043e\u0434\u044f\u0449\u0430\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                    "$ref": "#/definitions/OrganizationInclude"
+                },
+                "starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "description_short": {
+                    "description": "\u041a\u0440\u0430\u0442\u043a\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435/\u043f\u043e\u0434\u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "description_html": {
+                    "description": "\u041f\u043e\u043b\u043d\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441 html-\u0442\u0435\u0433\u0430\u043c\u0438",
+                    "type": "string"
+                },
+                "categories": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439, \u0432 \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0432\u0445\u043e\u0434\u0438\u0442 \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CategoryInclude"
+                    }
+                },
+                "location": {
+                    "description": "\u041c\u0435\u0441\u0442\u043e \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "$ref": "#/definitions/LocationInclude"
+                },
+                "poster_image_url": {
+                    "description": "URL \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044f (\u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u043c\u0443\u043b\u044c\u0442\u0438\u0430\u043d\u043a\u0435\u0442\u0430)",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "custom": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0441 \u0434\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u043c\u0438 \u043f\u043e\u043b\u044f\u043c\u0438, \u0441\u043f\u0435\u0446\u0438\u0444\u0438\u0447\u043d\u044b\u043c\u0438 \u0434\u043b\u044f \u0434\u0430\u043d\u043d\u043e\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                    "type": "object"
+                },
+                "questions": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0432\u043e\u043f\u0440\u043e\u0441\u043e\u0432 \u0432 \u0430\u043d\u043a\u0435\u0442\u0435 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QuestionInclude"
+                    }
+                },
+                "access_status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u0430 \u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044e",
+                    "type": "string"
+                },
+                "age_limit": {
+                    "description": "\u0412\u043e\u0437\u0440\u0430\u0441\u0442\u043d\u043e\u0435 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "tickets_limit": {
+                    "description": "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043c\u043e\u0433\u0443\u0442 \u043f\u043e\u0441\u0435\u0442\u0438\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u0435. \u041f\u0440\u0438 \u0434\u043e\u0441\u0442\u0438\u0436\u0435\u043d\u0438\u0438 \u044d\u0442\u043e\u0433\u043e \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u043d\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u0435 \u0437\u0430\u043a\u0440\u043e\u0435\u0442\u0441\u044f, \u0434\u0430\u0436\u0435 \u0435\u0441\u043b\u0438 \u0431\u0443\u0434\u0443\u0442 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u043c\u0438 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438. \u041f\u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 0, \u0447\u0442\u043e\u0431\u044b \u0441\u043d\u044f\u0442\u044c \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435. \u0423\u0447\u0438\u0442\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043a\u0430\u043a \u043e\u043f\u043b\u0430\u0447\u0435\u043d\u043d\u044b\u0445, \u0442\u0430\u043a \u0438 \u0437\u0430\u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0445 \u0431\u0438\u043b\u0435\u0442\u043e\u0432.",
+                    "type": "integer"
+                },
+                "ticket_types": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0432\u0438\u0434\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TicketTypeRequest"
+                    }
+                },
+                "personal_links": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0441\u0441\u044b\u043b\u043e\u043a \u0434\u043b\u044f \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "personal_link_title": {
+                    "description": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0441\u0441\u044b\u043b\u043a\u0438 (\u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440: \u0412\u0430\u0448\u0430 \u0441\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u043e\u043d\u043b\u0430\u0439\u043d-\u0442\u0440\u0430\u043d\u0441\u043b\u044f\u0446\u0438\u044e)",
+                    "type": "boolean"
+                },
+                "is_sending_free_tickets": {
+                    "description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0442\u044c \u0431\u0438\u043b\u0435\u0442\u044b \u043d\u0430 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0435 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "boolean"
+                },
+                "reservation_period": {
+                    "description": "\u0421\u0440\u043e\u043a \u0431\u0440\u043e\u043d\u0438 \u0431\u0438\u043b\u0435\u0442\u0430 \u0432 \u0447\u0430\u0441\u0430\u0445. \u041d\u0443\u043b\u0435\u0432\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0435\u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u043c\u0443 \u0441\u0440\u043e\u043a\u0443",
+                    "type": "integer"
+                }
+            }
+        },
+        "QuestionInclude": {
+            "properties": {
+                "field_id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442\u043e\u0432\u044b\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0432\u043e\u043f\u0440\u043e\u0441\u0430",
+                    "type": "string"
+                },
+                "is_mandatory": {
+                    "description": "\u042f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043b\u0438 \u043e\u0442\u0432\u0435\u0442 \u043d\u0430 \u0432\u043e\u043f\u0440\u043e\u0441 \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u043c",
+                    "type": "boolean"
+                },
+                "status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0432\u043e\u043f\u0440\u043e\u0441\u0430",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u0422\u0435\u043a\u0441\u0442 \u0432\u043e\u043f\u0440\u043e\u0441\u0430",
+                    "type": "string"
+                },
+                "comment": {
+                    "description": "\u041f\u043e\u0434\u0441\u043a\u0430\u0437\u043a\u0430 \u043f\u043e\u0434 \u0432\u043e\u043f\u0440\u043e\u0441\u043e\u043c",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "\u0422\u0438\u043f \u0432\u043e\u043f\u0440\u043e\u0441\u0430",
+                    "type": "string"
+                },
+                "possible_answers": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043e\u0442\u0432\u0435\u0442\u043e\u0432 \u043d\u0430 \u0432\u043e\u043f\u0440\u043e\u0441",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "EditOrderVisitorsAttendance": {
+            "properties": {
+                "starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043f\u043e\u0441\u0435\u0449\u0435\u043d\u0438\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u043c \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u0443\u0445\u043e\u0434\u0430 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0441 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "ApproveOrder": {},
+        "EditEvent": {
+            "properties": {
+                "ticket_types": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0432\u0438\u0434\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TicketTypeRequest"
+                    }
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "description_short": {
+                    "description": "\u041a\u0440\u0430\u0442\u043a\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435/\u043f\u043e\u0434\u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "description_html": {
+                    "description": "\u041f\u043e\u043b\u043d\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441 html-\u0442\u0435\u0433\u0430\u043c\u0438",
+                    "type": "string"
+                },
+                "starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0432 \u0444\u043e\u0440\u043c\u0430\u0442\u0435 ISO",
+                    "type": "string"
+                },
+                "ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0432 \u0444\u043e\u0440\u043c\u0430\u0442\u0435 ISO",
+                    "type": "string"
+                },
+                "categories": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439, \u0432 \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0432\u0445\u043e\u0434\u0438\u0442 \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CategoryInclude"
+                    }
+                },
+                "location": {
+                    "description": "\u041c\u0435\u0441\u0442\u043e \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "$ref": "#/definitions/LocationInclude"
+                },
+                "poster_image_url": {
+                    "description": "URL \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044f (\u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u043c\u0443\u043b\u044c\u0442\u0438\u0430\u043d\u043a\u0435\u0442\u0430)",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "custom": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0441 \u0434\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u043c\u0438 \u043f\u043e\u043b\u044f\u043c\u0438, \u0441\u043f\u0435\u0446\u0438\u0444\u0438\u0447\u043d\u044b\u043c\u0438 \u0434\u043b\u044f \u0434\u0430\u043d\u043d\u043e\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                    "type": "object"
+                },
+                "questions": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0432\u043e\u043f\u0440\u043e\u0441\u043e\u0432 \u0432 \u0430\u043d\u043a\u0435\u0442\u0435 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QuestionInclude"
+                    }
+                },
+                "access_status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u0430 \u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044e",
+                    "type": "string"
+                },
+                "age_limit": {
+                    "description": "\u0412\u043e\u0437\u0440\u0430\u0441\u0442\u043d\u043e\u0435 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "tickets_limit": {
+                    "description": "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043c\u043e\u0433\u0443\u0442 \u043f\u043e\u0441\u0435\u0442\u0438\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u0435. \u041f\u0440\u0438 \u0434\u043e\u0441\u0442\u0438\u0436\u0435\u043d\u0438\u0438 \u044d\u0442\u043e\u0433\u043e \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u043d\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u0435 \u0437\u0430\u043a\u0440\u043e\u0435\u0442\u0441\u044f, \u0434\u0430\u0436\u0435 \u0435\u0441\u043b\u0438 \u0431\u0443\u0434\u0443\u0442 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u043c\u0438 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438. \u041f\u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 0, \u0447\u0442\u043e\u0431\u044b \u0441\u043d\u044f\u0442\u044c \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435. \u0423\u0447\u0438\u0442\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043a\u0430\u043a \u043e\u043f\u043b\u0430\u0447\u0435\u043d\u043d\u044b\u0445, \u0442\u0430\u043a \u0438 \u0437\u0430\u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0445 \u0431\u0438\u043b\u0435\u0442\u043e\u0432.",
+                    "type": "integer"
+                },
+                "personal_links": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0441\u0441\u044b\u043b\u043e\u043a \u0434\u043b\u044f \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "personal_link_title": {
+                    "description": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0441\u0441\u044b\u043b\u043a\u0438 (\u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440: \u0412\u0430\u0448\u0430 \u0441\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u043e\u043d\u043b\u0430\u0439\u043d-\u0442\u0440\u0430\u043d\u0441\u043b\u044f\u0446\u0438\u044e)",
+                    "type": "boolean"
+                },
+                "is_sending_free_tickets": {
+                    "description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0442\u044c \u0431\u0438\u043b\u0435\u0442\u044b \u043d\u0430 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0435 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "boolean"
+                },
+                "reservation_period": {
+                    "description": "\u0421\u0440\u043e\u043a \u0431\u0440\u043e\u043d\u0438 \u0431\u0438\u043b\u0435\u0442\u0430 \u0432 \u0447\u0430\u0441\u0430\u0445. \u041d\u0443\u043b\u0435\u0432\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0435\u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u043c\u0443 \u0441\u0440\u043e\u043a\u0443",
+                    "type": "integer"
+                }
+            }
+        },
+        "CompanyPaymentRequestResponse": {
+            "required": [
+                "id",
+                "company_id",
+                "name",
+                "contact_person",
+                "contact_phone",
+                "contact_email"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "integer"
+                },
+                "company_id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "integer"
+                },
+                "contact_person": {
+                    "description": "\u0424\u0418\u041e \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u043a\u043e\u0433\u043e \u043b\u0438\u0446\u0430",
+                    "type": "string"
+                },
+                "contact_phone": {
+                    "description": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u043e\u0433\u043e \u043b\u0438\u0446\u0430",
+                    "type": "string"
+                },
+                "contact_email": {
+                    "description": "Email \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u043e\u0433\u043e \u043b\u0438\u0446\u0430",
+                    "type": "string"
+                },
+                "participants_initial": {
+                    "description": "\u0418\u043c\u0435\u043d\u0430 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "TicketTypeResponse": {
+            "required": [
+                "id",
+                "name",
+                "buy_amount_min",
+                "buy_amount_max",
+                "price",
+                "is_promocode_locked",
+                "remaining",
+                "sale_ends_at",
+                "public_key",
+                "is_active"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "buy_amount_min": {
+                    "description": "\u041c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0431\u0438\u043b\u0435\u0442\u043e\u0432 \u0432 \u043e\u0434\u043d\u043e\u0439 \u043f\u043e\u043a\u0443\u043f\u043a\u0435",
+                    "type": "number"
+                },
+                "buy_amount_max": {
+                    "description": "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0431\u0438\u043b\u0435\u0442\u043e\u0432 \u0432 \u043e\u0434\u043d\u043e\u0439 \u043f\u043e\u043a\u0443\u043f\u043a\u0435",
+                    "type": "number"
+                },
+                "price": {
+                    "description": "\u0426\u0435\u043d\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "number"
+                },
+                "is_promocode_locked": {
+                    "description": "\u0417\u0430\u043a\u0440\u044b\u0442 \u043b\u0438 \u044d\u0442\u043e\u0442 \u0442\u0438\u043f \u0431\u0438\u043b\u0435\u0442\u0430 \u0432\u0432\u0435\u0434\u0451\u043d\u043d\u044b\u043c \u043f\u0440\u043e\u043c\u043e\u043a\u043e\u0434\u043e\u043c",
+                    "type": "boolean"
+                },
+                "remaining": {
+                    "description": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0431\u0438\u043b\u0435\u0442\u043e\u0432 \u043e\u0441\u0442\u0430\u043b\u043e\u0441\u044c",
+                    "type": "integer"
+                },
+                "sale_ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u043f\u0440\u043e\u0434\u0430\u0436\u0438 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string",
+                    "format": "date"
+                },
+                "sale_starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u043f\u0440\u043e\u0434\u0430\u0436\u0438 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string",
+                    "format": "date"
+                },
+                "public_key": {
+                    "description": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u043a\u043b\u044e\u0447 \u0434\u043b\u044f \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043e\u0432\u043a\u0438 QR-\u043a\u043e\u0434\u0430 \u0431\u0438\u043b\u0435\u0442\u0430 \u044d\u0442\u043e\u0433\u043e \u0442\u0438\u043f\u0430",
+                    "type": "string"
+                },
+                "is_active": {
+                    "description": "\u0410\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "boolean"
+                },
+                "ad_partner_profit": {
+                    "description": "\u041f\u0430\u0440\u0442\u043d\u0451\u0440\u0441\u043a\u0430\u044f \u043f\u0440\u0438\u0431\u044b\u043b\u044c",
+                    "type": "number"
+                },
+                "send_personal_links": {
+                    "description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043a\u0430 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0441\u0441\u0441\u044b\u043b\u043e\u043a",
+                    "type": "boolean"
+                },
+                "sold": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043f\u0440\u043e\u0434\u0430\u043d\u043d\u044b\u0445 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "number"
+                },
+                "attended": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043f\u043e\u0441\u0435\u0442\u0438\u0432\u0448\u0438\u0445 \u043b\u044e\u0434\u0435\u0439",
+                    "type": "number"
+                },
+                "limit": {
+                    "description": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u043d\u0430 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0431\u0438\u043b\u0435\u0442\u043e\u0432 \u0432 \u044d\u0442\u043e\u043c \u0442\u0438\u043f\u0435 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "number"
+                },
+                "status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "RegistrationOrdersResponse": {
+            "required": [
+                "total",
+                "values"
+            ],
+            "properties": {
+                "total": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "type": "integer"
+                },
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0437\u0430\u043a\u0430\u0437\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistrationOrderResponse"
+                    }
+                }
+            }
+        },
+        "EventResponse": {
+            "required": [
+                "id",
+                "starts_at",
+                "name",
+                "moderation_status",
+                "poster_image",
+                "categories",
+                "url"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date"
+                },
+                "starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date"
+                },
+                "ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043a\u043e\u043d\u0446\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "description_short": {
+                    "description": "\u041a\u043e\u0440\u043e\u0442\u043a\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0438\u043b\u0438 \u043f\u043e\u0434\u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a",
+                    "type": "string"
+                },
+                "description_html": {
+                    "description": "\u041f\u043e\u043b\u043d\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "\u0410\u0434\u0440\u0435\u0441 \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0432 timepad",
+                    "type": "string"
+                },
+                "poster_image": {
+                    "description": "\u041a\u0430\u0440\u0442\u0438\u043d\u043a\u0430 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "$ref": "#/definitions/ImageResponse"
+                },
+                "ad_partner_percent": {
+                    "description": "\u041f\u0440\u043e\u0446\u0435\u043d\u0442, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043f\u043e\u043b\u0443\u0447\u0430\u044e\u0442 \u043f\u0430\u0440\u0442\u043d\u0451\u0440\u044b \u0437\u0430 \u043f\u0440\u043e\u0434\u0430\u0436\u0443 \u0431\u0438\u043b\u0435\u0442\u0430 \u043d\u0430 \u044d\u0442\u043e \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                    "type": "integer"
+                },
+                "locale": {
+                    "description": "\u042f\u0437\u044b\u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "\u041c\u0435\u0441\u0442\u043e \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "$ref": "#/definitions/LocationResponse"
+                },
+                "organization": {
+                    "description": "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044f, \u043f\u0440\u043e\u0432\u043e\u0434\u044f\u0449\u0430\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                    "$ref": "#/definitions/OrganizationResponse"
+                },
+                "categories": {
+                    "description": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CategoryResponse"
+                    }
+                },
+                "tickets_limit": {
+                    "description": "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043c\u043e\u0433\u0443\u0442 \u043f\u043e\u0441\u0435\u0442\u0438\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u0435",
+                    "type": "integer"
+                },
+                "ticket_types": {
+                    "description": "\u0414\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u0442\u0438\u043f\u044b \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TicketTypeResponse"
+                    }
+                },
+                "personal_links": {
+                    "description": "\u041f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438. \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u0438\u0438 \u0442\u043e\u043a\u0435\u043d\u0430 \u0441\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0435\u043c view_private_events",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "questions": {
+                    "description": "\u0412\u043e\u043f\u0440\u043e\u0441\u044b, \u0437\u0430\u0434\u0430\u044e\u0449\u0438\u0435\u0441\u044f \u043f\u0440\u0438 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QuestionResponse"
+                    }
+                },
+                "age_limit": {
+                    "description": "\u0412\u043e\u0437\u0440\u0430\u0441\u0442\u043d\u043e\u0435 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "widgets": {
+                    "description": "\u0412\u0438\u0434\u0436\u0435\u0442\u044b, \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u0434\u043b\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WidgetResponse"
+                    }
+                },
+                "properties": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043e\u0441\u043e\u0431\u0435\u043d\u043d\u043e\u0441\u0442\u0435\u0439 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "moderation_status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u043c\u043e\u0434\u0435\u0440\u0430\u0446\u0438\u0438",
+                    "type": "string"
+                },
+                "access_status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u0430 \u043a \u0441\u043e\u0431\u044b\u0442\u0438\u044e",
+                    "type": "string"
+                },
+                "registration_data": {
+                    "description": "\u041e\u0431\u043e\u0431\u0449\u0451\u043d\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u043e \u0431\u0438\u043b\u0435\u0442\u0430\u0445",
+                    "$ref": "#/definitions/RegistrationDataResponse"
+                },
+                "is_sending_free_tickets": {
+                    "description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0442\u044c \u0431\u0438\u043b\u0435\u0442\u044b \u043d\u0430 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0435 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438",
+                    "type": "boolean"
+                },
+                "personal_link_title": {
+                    "description": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0441\u0441\u044b\u043b\u043a\u0438. \u0414\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u0438\u0438 \u0442\u043e\u043a\u0435\u043d\u0430 \u0441\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0435\u043c view_private_events",
+                    "type": "string"
+                },
+                "reservation_period": {
+                    "description": "\u0421\u0440\u043e\u043a \u0431\u0440\u043e\u043d\u0438 \u0431\u0438\u043b\u0435\u0442\u0430 \u0432 \u0447\u0430\u0441\u0430\u0445. \u041d\u0443\u043b\u0435\u0432\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0435\u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u043c\u0443 \u0441\u0440\u043e\u043a\u0443",
+                    "type": "integer"
+                }
+            }
+        },
+        "WebhookApiResponse": {
+            "properties": {
+                "id": {
+                    "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 webhook'\u0430",
+                    "type": "integer"
+                },
+                "organization": {
+                    "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                    "type": "integer"
+                },
+                "url": {
+                    "description": "URL-\u0430\u0434\u0440\u0435\u0441\u0441 \u0434\u043b\u044f \u043a\u043e\u043b\u0431\u0435\u043a\u0430 \u043f\u0440\u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 webhook'\u0430",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "\u0422\u0438\u043f webhook'\u0430",
+                    "type": "string"
+                },
+                "secret": {
+                    "description": "\u041a\u043b\u044e\u0447 \u043f\u043e\u0434\u043f\u0438\u0441\u0438 webhook'\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "PaymentResponse": {
+            "required": [
+                "amount"
+            ],
+            "properties": {
+                "amount": {
+                    "description": "\u041e\u043f\u043b\u0430\u0447\u0435\u043d\u043d\u0430\u044f \u0441\u0443\u043c\u043c\u0430 (\u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0440\u0443\u0431\u043b\u0435\u0439, \u043e\u0442\u0434\u0430\u043d\u043d\u044b\u0445 \u043f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u0435\u043c \u043f\u043b\u0430\u0442\u0451\u0436\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u0435 \u0432 \u044d\u0442\u043e\u043c \u0437\u0430\u043a\u0430\u0437\u0435)",
+                    "type": "number",
+                    "format": "float"
+                },
+                "paid_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043f\u043b\u0430\u0442\u044b",
+                    "type": "string",
+                    "format": "date"
+                },
+                "payment_type": {
+                    "description": "\u041f\u043b\u0430\u0442\u0451\u0436\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u043e\u043f\u043b\u0430\u0442\u044b",
+                    "type": "string"
+                },
+                "payment_link": {
+                    "description": "\u0421\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u043e\u043f\u043b\u0430\u0442\u0443",
+                    "type": "string"
+                }
+            }
+        },
+        "CompaniesResponse": {
+            "required": [
+                "total",
+                "values"
+            ],
+            "properties": {
+                "total": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "type": "integer"
+                },
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0437\u0430\u043a\u0430\u0437\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CompanyResponse"
+                    }
+                }
+            }
+        },
+        "CategoryResponse": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438",
+                    "type": "string"
+                }
+            }
+        },
+        "InvoicesResponse": {
+            "required": [
+                "total",
+                "values"
+            ],
+            "properties": {
+                "total": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "type": "integer"
+                },
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0437\u0430\u043a\u0430\u0437\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InvoiceResponse"
+                    }
+                }
+            }
+        },
+        "WidgetResponse": {
+            "required": [
+                "code_html"
+            ],
+            "properties": {
+                "code_html": {
+                    "description": "\u041a\u043e\u0434 \u0432\u0441\u0442\u0430\u0432\u043a\u0438 \u0432\u0438\u0434\u0436\u0435\u0442\u0430 \u0432 \u0441\u0430\u0439\u0442",
+                    "type": "string"
+                }
+            }
+        },
+        "WidgetContainterInclude": {
+            "required": [
+                "custom",
+                "button"
+            ],
+            "properties": {
+                "custom": {
+                    "description": "\u041a\u043e\u0434 \u0432\u0441\u0442\u0430\u0432\u043a\u0438 \u0432\u0438\u0434\u0436\u0435\u0442\u0430 \u0432 \u0441\u0430\u0439\u0442",
+                    "type": "string"
+                },
+                "button": {
+                    "description": "\u041a\u043e\u0434 \u0432\u0438\u0434\u0436\u0435\u0442\u0430-\u043a\u043d\u043e\u043f\u043a\u0438 \u0434\u043b\u044f \u0432\u0441\u0442\u0430\u0432\u043a\u0438 \u043d\u0430 \u0441\u0430\u0439\u0442",
+                    "type": "string"
+                }
+            }
+        },
+        "EventStatusIncludeApiResponse": {
+            "properties": {
+                "id": {
+                    "description": "\u0421\u0438\u043c\u0432\u043e\u043b\u044c\u043d\u044b\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0442\u0430\u0442\u0443\u0441\u0430",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0441\u0442\u0430\u0442\u0443\u0441\u0430",
+                    "type": "integer"
+                }
+            }
+        },
+        "EventsResponse": {
+            "required": [
+                "total",
+                "values"
+            ],
+            "properties": {
+                "total": {
+                    "description": "\u041e\u0431\u0449\u0435\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043d\u0430\u0439\u0434\u0435\u043d\u043d\u044b\u0445 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                    "type": "integer"
+                },
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0441 \u0432\u044b\u0431\u043e\u0440\u043a\u043e\u0439 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EventResponse"
+                    }
+                }
+            }
+        },
+        "OrganizationResponse": {
+            "required": [
+                "id",
+                "name",
+                "description_html",
+                "url",
+                "logo_image",
+                "subdomain"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                    "type": "string"
+                },
+                "description_html": {
+                    "description": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "URL \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u043d\u0430 \u0441\u0430\u0439\u0442\u0435",
+                    "type": "string"
+                },
+                "logo_image": {
+                    "description": "\u041b\u043e\u0433\u043e\u0442\u0438\u043f",
+                    "$ref": "#/definitions/ImageResponse"
+                },
+                "subdomain": {
+                    "description": "URL-\u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u0432 \u0422\u0430\u0439\u043c\u043f\u0430\u0434\u0435 (***.timepad.ru)",
+                    "type": "string"
+                },
+                "permissions": {
+                    "description": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u0432 \u0434\u043b\u044f \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0439",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "EventCategoryIncludeApiResponse": {
+            "properties": {
+                "id": {
+                    "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438",
+                    "type": "integer"
+                },
+                "tag": {
+                    "description": "\u0422\u044d\u0433",
+                    "type": "string"
+                }
+            }
+        },
+        "CompanyBankAccountResponse": {
+            "required": [
+                "name",
+                "document"
+            ],
+            "properties": {
+                "bank_name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0431\u0430\u043d\u043a\u0430",
+                    "type": "string"
+                },
+                "account": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0440\u0430\u0441\u0447\u0435\u0442\u043d\u043e\u0433\u043e \u0441\u0447\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "bik": {
+                    "description": "\u0411\u0418\u041a",
+                    "type": "string"
+                },
+                "correspondent_account": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u043a\u043e\u0440\u0440\u0435\u0441\u043f\u043e\u043d\u0434\u0435\u043d\u0442\u0441\u043a\u0438\u0439 \u0441\u0447\u0435\u0442",
+                    "type": "string"
+                },
+                "kpp": {
+                    "description": "\u041a\u041f\u041f",
+                    "type": "string"
+                }
+            }
+        },
+        "OrderReferrerResponse": {
+            "required": [
+                "name",
+                "title"
+            ],
+            "properties": {
+                "campaign": {
+                    "description": "\u041a\u0430\u043c\u043f\u0430\u043d\u0438\u044f",
+                    "type": "string"
+                },
+                "medium": {
+                    "description": "\u041a\u0430\u043d\u0430\u043b",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "\u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a",
+                    "type": "string"
+                }
+            }
+        },
+        "EventsCategoriesApiResponse": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0441 \u0432\u044b\u0431\u043e\u0440\u043a\u043e\u0439 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EventCategoryIncludeApiResponse"
+                    }
+                }
+            }
+        },
+        "TicketsStatusesApiResponse": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0441 \u0432\u044b\u0431\u043e\u0440\u043a\u043e\u0439 \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TicketStatusIncludeApiResponse"
+                    }
+                }
+            }
+        },
+        "Link": {
+            "properties": {
+                "name": {
+                    "description": "\u041c\u0430\u0448\u0438\u043d\u043e\u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 (\u0434\u043b\u044f \u043e\u043f\u043b\u0430\u0442 - \u0441\u0442\u0440\u043e\u043a\u043e\u0432\u044b\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043f\u043b\u0430\u0442\u0451\u0436\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b)",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "\u0427\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 (\u0434\u043b\u044f \u043e\u043f\u043b\u0430\u0442 - \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u043b\u0430\u0442\u0451\u0436\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b)",
+                    "type": "string"
+                },
+                "href": {
+                    "description": "\u0421\u0441\u044b\u043b\u043a\u0430",
+                    "type": "string"
+                },
+                "templated": {
+                    "description": "\u041f\u0440\u0438\u0437\u043d\u0430\u043a \u0442\u043e\u0433\u043e, \u0447\u0442\u043e \u0441\u0441\u044b\u043b\u043a\u0430 - \u0448\u0430\u0431\u043b\u043e\u043d. \u0423 curies - true, \u0432 \u043e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u0445 \u0441\u043b\u0443\u0447\u0430\u044f\u0445 \u043d\u0435 \u043f\u0440\u0438\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442",
+                    "type": "boolean"
+                }
+            }
+        },
+        "CompanyResponse": {
+            "required": [
+                "id",
+                "name",
+                "inn",
+                "legal_address",
+                "actual_address"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u0440\u0435\u043a\u0432\u0438\u0437\u0438\u0442\u043e\u0432 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "string",
+                    "format": "date"
+                },
+                "inn": {
+                    "description": "\u0418\u041d\u041d \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "string",
+                    "format": "date"
+                },
+                "legal_address": {
+                    "description": "\u042e\u0440\u0438\u0434\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0430\u0434\u0440\u0435\u0441 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "string",
+                    "format": "date"
+                },
+                "actual_address": {
+                    "description": "\u0424\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0430\u0434\u0440\u0435\u0441 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "string",
+                    "format": "date"
+                },
+                "bank_account": {
+                    "description": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0431\u0430\u043d\u043a\u0435 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CompanyBankAccountResponse"
+                    }
+                }
+            }
+        },
+        "AttendanceResponse": {
+            "properties": {
+                "starts_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043f\u043e\u0441\u0435\u0449\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date"
+                },
+                "ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u0443\u0445\u043e\u0434\u0430 \u0441 \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "TicketResponse": {
+            "required": [
+                "id",
+                "answers",
+                "ticket_type"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "integer"
+                },
+                "number": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "price_nominal": {
+                    "description": "\u041d\u043e\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0446\u0435\u043d\u0430 \u0431\u0438\u043b\u0435\u0442\u0430 \u043d\u0430 \u043c\u043e\u043c\u0435\u043d\u0442 \u043f\u043e\u043a\u0443\u043f\u043a\u0438. \u0412\u041d\u0418\u041c\u0410\u041d\u0418\u0415! \u042d\u0442\u0430 \u0446\u0435\u043d\u0430 \u043d\u0435 \u0443\u0447\u0438\u0442\u044b\u0432\u0430\u0435\u0442 \u043d\u0430\u0447\u0438\u0441\u043b\u0435\u043d\u043d\u044b\u0435 \u0441\u043a\u0438\u0434\u043a\u0438 \u043d\u0430 \u0437\u0430\u043a\u0430\u0437 \u0438 \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u0446\u0435\u043d\u043e\u0439 \u0437\u0430\u043a\u0430\u0437\u0430\u043d\u043d\u043e\u0439 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0431\u0438\u043b\u0435\u0442\u0430 \u043d\u0430 \u043c\u043e\u043c\u0435\u043d\u0442 \u0435\u0433\u043e \u043e\u043f\u043b\u0430\u0442\u044b.",
+                    "type": "number"
+                },
+                "answers": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0441 \u043e\u0442\u0432\u0435\u0442\u0430\u043c\u0438 \u043d\u0430 \u0432\u043e\u043f\u0440\u043e\u0441\u044b \u0430\u043d\u043a\u0435\u0442\u044b",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "ticket_type": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043e \u0442\u0438\u043f\u0435 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "$ref": "#/definitions/TicketTypeResponse"
+                },
+                "attendance": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043e \u043f\u043e\u0441\u0435\u0449\u0435\u043d\u0438\u0438 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0441 \u044d\u0442\u0438\u043c \u0431\u0438\u043b\u0435\u0442\u043e\u043c",
+                    "$ref": "#/definitions/AttendanceResponse"
+                },
+                "place": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043e \u043c\u0435\u0441\u0442\u0435 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "$ref": "#/definitions/PlaceResponse"
+                },
+                "codes": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043e \u043a\u043e\u0434\u0430\u0445 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "$ref": "#/definitions/CodesResponse"
+                },
+                "personal_link": {
+                    "description": "\u041f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0441\u0441\u044b\u043b\u043a\u0430",
+                    "type": "string"
+                },
+                "eticket_link": {
+                    "description": "\u0421\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u044b\u0439 \u0431\u0438\u043b\u0435\u0442",
+                    "type": "string"
+                }
+            }
+        },
+        "OrderEventResponse": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Id \u0421\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "integer"
+                }
+            }
+        },
+        "ImageResponse": {
+            "required": [
+                "default_url",
+                "uploadcare_url"
+            ],
+            "properties": {
+                "default_url": {
+                    "description": "\u041a\u0430\u0440\u0442\u0438\u043d\u043a\u0430 \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u043c\u0435\u0440\u0430",
+                    "type": "string"
+                },
+                "uploadcare_url": {
+                    "description": "\u0410\u0434\u0440\u0435\u0441 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0438 \u043d\u0430 uploadcare, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u043c\u0443 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u0438\u0431\u0430\u0432\u043b\u044f\u0442\u044c \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0432 \u0444\u043e\u0440\u043c\u0430\u0442\u0435 uploadcare",
+                    "type": "string"
+                }
+            }
+        },
+        "CompanyPaymentRequestsResponse": {
+            "required": [
+                "id",
+                "created_at",
+                "status",
+                "tickets",
+                "answers"
+            ],
+            "properties": {
+                "total": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "type": "integer"
+                },
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0437\u0430\u043a\u0430\u0437\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CompanyPaymentRequestResponse"
+                    }
+                }
+            }
+        },
+        "AnswerResponse": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u043e\u0442\u0432\u0435\u0442\u0430",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u0422\u0435\u043a\u0441\u0442 \u043e\u0442\u0432\u0435\u0442\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "OrderStatusResponse": {
+            "required": [
+                "name",
+                "title"
+            ],
+            "properties": {
+                "name": {
+                    "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0442\u0430\u0442\u0443\u0441\u0430",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "\u0427\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u0447\u0438\u0442\u0430\u0435\u043c\u044b\u0439 \u0441\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043a\u0430\u0437\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "RegistrationOrderResponse": {
+            "required": [
+                "id",
+                "created_at",
+                "status",
+                "tickets",
+                "answers"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u0437\u0430\u043a\u0430\u0437\u0430",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0437\u0430\u043a\u0430\u0437\u0430",
+                    "type": "string",
+                    "format": "date"
+                },
+                "status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043a\u0430\u0437\u0430",
+                    "$ref": "#/definitions/OrderStatusResponse"
+                },
+                "mail": {
+                    "description": "\u0410\u0434\u0440\u0435\u0441 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b \u0437\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u0430 \u0431\u0438\u043b\u0435\u0442\u043e\u0432. \u0415\u0441\u043b\u0438 \u0440\u0435\u0436\u0438\u043c \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438 \u043d\u0430 \u0432\u0430\u0448\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u0435 \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u0432 \u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0438 &laquo;\u041f\u0440\u043e\u0441\u0442\u0430\u044f \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f&raquo; \u0438\u043b\u0438 &laquo;\u041c\u0443\u043b\u044c\u0442\u0438\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f&raquo;, \u0437\u0434\u0435\u0441\u044c \u0431\u0443\u0434\u0435\u0442 \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u044c\u0441\u044f \u0430\u0434\u0440\u0435\u0441 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b \u0438\u0437 \u043f\u043e\u043b\u044f &laquo;E-mail&raquo; \u0444\u043e\u0440\u043c\u044b \u043f\u043e\u043a\u0443\u043f\u043a\u0438 \u0431\u0438\u043b\u0435\u0442\u043e\u0432. \u0415\u0441\u043b\u0438 \u0440\u0435\u0436\u0438\u043c \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d \u043a\u0430\u043a &laquo;\u041c\u0443\u043b\u044c\u0442\u0438\u0430\u043d\u043a\u0435\u0442\u0430&raquo;, \u0442\u043e \u0437\u0434\u0435\u0441\u044c \u0431\u0443\u0434\u0435\u0442 \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u0430\u0434\u0440\u0435\u0441 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0430. \u0412 \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0441\u043b\u0443\u0447\u0430\u044f\u0445, \u043a\u043e\u0433\u0434\u0430 \u0444\u043e\u0440\u043c\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043d\u0430 \u043d\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e\u0439 \u0444\u043e\u0440\u043c\u044b \u0437\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u0430, \u0432 \u044d\u0442\u043e\u043c \u043f\u043e\u043b\u0435 \u0431\u0443\u0434\u0435\u0442 \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u0430\u0434\u0440\u0435\u0441 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b \u0438\u0437 \u044d\u0442\u043e\u0439 \u0444\u043e\u0440\u043c\u044b.",
+                    "type": "string"
+                },
+                "payment": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043e \u043f\u043b\u0430\u0442\u0435\u0436\u0435",
+                    "$ref": "#/definitions/PaymentResponse"
+                },
+                "tickets": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0439",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TicketResponse"
+                    }
+                },
+                "answers": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u041e\u0442\u0432\u0435\u0442\u043e\u0432",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "promocodes": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u0440\u043e\u043c\u043e\u043a\u043e\u0434\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "event": {
+                    "description": "\u041a\u0440\u0430\u0442\u043a\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0441\u043e\u0431\u044b\u0442\u0438\u0438",
+                    "$ref": "#/definitions/OrderEventResponse"
+                },
+                "referrer": {
+                    "description": "\u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0438 \u0442\u0440\u0430\u0444\u0438\u043a\u0430",
+                    "$ref": "#/definitions/OrderReferrerResponse"
+                },
+                "subscribed_to_newsletter": {
+                    "description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u043d\u0430 \u0430\u043d\u043e\u043d\u0441\u044b \u0441\u043e\u0431\u044b\u0442\u0438\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440\u0430",
+                    "type": "boolean"
+                }
+            }
+        },
+        "EventsStatusesApiResponse": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0441 \u0432\u044b\u0431\u043e\u0440\u043a\u043e\u0439 \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u0432 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EventStatusIncludeApiResponse"
+                    }
+                }
+            }
+        },
+        "PlaceResponse": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043c\u0435\u0441\u0442\u0430",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044f \u043c\u0435\u0441\u0442\u0430",
+                    "type": "object",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "WebhooksApiResponse": {
+            "required": [
+                "total",
+                "values"
+            ],
+            "properties": {
+                "values": {
+                    "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u0441\u043e \u0441\u043f\u0438\u0441\u043a\u043e\u043c webhook'\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WebhookApiResponse"
+                    }
+                }
+            }
+        },
+        "CodesResponse": {
+            "properties": {
+                "ean13": {
+                    "description": "ean13 \u043a\u043e\u0434 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "ean8": {
+                    "description": "ean8 \u043a\u043e\u0434 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string"
+                },
+                "printed_code": {
+                    "description": "\u041a\u043e\u0434, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0431\u0443\u0434\u0435\u0442 \u043d\u0430\u043f\u0435\u0447\u0430\u0442\u0430\u043d \u043d\u0430 \u0431\u0438\u043b\u0435\u0442\u0435",
+                    "type": "string"
+                }
+            }
+        },
+        "RegistrationDataResponse": {
+            "required": [
+                "price_max",
+                "price_min",
+                "sale_ends_at",
+                "tickets_total",
+                "tickets_limit",
+                "is_registration_open"
+            ],
+            "properties": {
+                "price_max": {
+                    "description": "\u0426\u0435\u043d\u0430 \u0441\u0430\u043c\u043e\u0433\u043e \u0434\u043e\u0440\u043e\u0433\u043e\u0433\u043e \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "number"
+                },
+                "price_min": {
+                    "description": "\u0426\u0435\u043d\u0430 \u0441\u0430\u043c\u043e\u0433\u043e \u0434\u0435\u0448\u0451\u0432\u043e\u0433\u043e \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "number"
+                },
+                "sale_ends_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u043f\u0440\u043e\u0434\u0430\u0436\u0438 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0439 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "string",
+                    "format": "date"
+                },
+                "tickets_total": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0437\u0430\u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0445, \u043f\u0440\u043e\u0434\u0430\u043d\u043d\u044b\u0445 \u0438 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0445 \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "integer"
+                },
+                "tickets_limit": {
+                    "description": "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0445 \u0431\u0438\u043b\u0435\u0442\u043e\u0432, \u043d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e \u043e\u0442 \u0442\u0438\u043f\u0430 \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "integer"
+                },
+                "is_registration_open": {
+                    "description": "\u041e\u0442\u043a\u0440\u044b\u0442\u0430 \u043b\u0438 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f",
+                    "type": "boolean"
+                }
+            }
+        },
+        "TicketStatusIncludeApiResponse": {
+            "properties": {
+                "id": {
+                    "description": "\u0421\u0438\u043c\u0432\u043e\u043b\u044c\u043d\u044b\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0442\u0430\u0442\u0443\u0441\u0430",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0441\u0442\u0430\u0442\u0443\u0441\u0430",
+                    "type": "integer"
+                }
+            }
+        },
+        "InvoiceResponse": {
+            "required": [
+                "id",
+                "company_payment_request_id",
+                "invoice_num",
+                "tickets_count",
+                "amount"
+            ],
+            "properties": {
+                "id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u043f\u043b\u0430\u0442\u0435\u0436\u0430",
+                    "type": "integer"
+                },
+                "company_payment_request_id": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u043e\u043f\u043b\u0430\u0442\u044b \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0435\u0439",
+                    "type": "integer"
+                },
+                "invoice_num": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440 \u043f\u043b\u0430\u0442\u0451\u0436\u043d\u043e\u0433\u043e \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430",
+                    "type": "integer"
+                },
+                "tickets_count": {
+                    "description": "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0431\u0438\u043b\u0435\u0442\u043e\u0432",
+                    "type": "integer"
+                },
+                "amount": {
+                    "description": "\u0421\u0443\u043c\u043c\u0430 \u043f\u043b\u0430\u0442\u0435\u0436\u0430",
+                    "type": "number"
+                },
+                "amount_in_words": {
+                    "description": "\u0421\u0443\u043c\u043c\u0430 \u043f\u043b\u0430\u0442\u0435\u0436\u0430 \u0441\u043b\u043e\u0432\u0430\u043c\u0438",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u043f\u043b\u0430\u0442\u0435\u0436\u0430",
+                    "type": "string"
+                },
+                "orders": {
+                    "description": "\u041d\u043e\u043c\u0435\u0440\u0430 \u0437\u0430\u043a\u0430\u0437\u043e\u0432",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "created_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u043f\u043b\u0430\u0442\u0435\u0436\u0430",
+                    "type": "string"
+                },
+                "paid_at": {
+                    "description": "\u0414\u0430\u0442\u0430 \u043e\u043f\u043b\u0430\u0442\u044b \u043f\u043b\u0430\u0442\u0435\u0436\u0430",
+                    "type": "string"
+                }
+            }
+        },
+        "QuestionResponse": {
+            "required": [
+                "field_id",
+                "name",
+                "type",
+                "possible_answers",
+                "is_mandatory",
+                "is_for_every_visitor",
+                "meta"
+            ],
+            "properties": {
+                "field_id": {
+                    "description": "\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442\u043e\u0432\u044b\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0432\u043e\u043f\u0440\u043e\u0441\u0430",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u0422\u0435\u043a\u0441\u0442 \u0432\u043e\u043f\u0440\u043e\u0441\u0430",
+                    "type": "string"
+                },
+                "comment": {
+                    "description": "\u041f\u043e\u0434\u0441\u043a\u0430\u0437\u043a\u0430 \u043f\u043e\u0434 \u0432\u043e\u043f\u0440\u043e\u0441\u043e\u043c",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "\u0422\u0438\u043f \u0432\u043e\u043f\u0440\u043e\u0441\u0430",
+                    "type": "string",
+                    "enum": [
+                        "text",
+                        "multiline_text",
+                        "select_one",
+                        "select_many",
+                        "upload",
+                        "agree"
+                    ]
+                },
+                "possible_answers": {
+                    "description": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u0435\u043c\u044b\u0445 \u043e\u0442\u0432\u0435\u0442\u043e\u0432 (\u0435\u0441\u043b\u0438 \u0432\u043e\u043f\u0440\u043e\u0441 \u043f\u0440\u0435\u0434\u043f\u043e\u043b\u0430\u0433\u0430\u0435\u0442 \u0442\u0430\u043a\u043e\u0439 \u0441\u043f\u0438\u0441\u043e\u043a)",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AnswerResponse"
+                    }
+                },
+                "is_mandatory": {
+                    "description": "\u042f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043b\u0438 \u043e\u0442\u0432\u0435\u0442 \u043d\u0430 \u0432\u043e\u043f\u0440\u043e\u0441 \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u043c",
+                    "type": "boolean"
+                },
+                "is_for_every_visitor": {
+                    "description": "\u0412\u044b\u0432\u043e\u0434\u0438\u0442\u044c \u0432\u043e\u043f\u0440\u043e\u0441 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e \u0434\u043b\u044f \u043a\u0430\u0436\u0434\u043e\u0433\u043e \u043a\u0443\u043f\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u0431\u0438\u043b\u0435\u0442\u0430",
+                    "type": "boolean"
+                },
+                "meta": {
+                    "description": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",
+                    "type": "object"
+                }
+            }
+        },
+        "LocationResponse": {
+            "required": [
+                "country",
+                "city",
+                "address",
+                "coordinates"
+            ],
+            "properties": {
+                "country": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0441\u0442\u0440\u0430\u043d\u044b",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0433\u043e\u0440\u043e\u0434\u0430",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "\u0410\u0434\u0440\u0435\u0441 \u043f\u0440\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                    "type": "string"
+                },
+                "coordinates": {
+                    "description": "\u0428\u0438\u0440\u043e\u0442\u0430 \u0438 \u0434\u043e\u043b\u0433\u043e\u0442\u0430 \u0434\u043b\u044f \u043a\u0430\u0440\u0442",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "Introspect": {
+            "required": [
+                "active",
+                "client_id",
+                "user_id",
+                "user_email",
+                "organizations"
+            ],
+            "properties": {
+                "active": {
+                    "description": "\u0414\u0435\u0439\u0441\u0442\u0432\u0443\u0435\u0442 \u043b\u0438 \u044d\u0442\u043e\u0442 \u0442\u043e\u043a\u0435\u043d",
+                    "type": "boolean"
+                },
+                "client_id": {
+                    "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043a\u043b\u0438\u0435\u043d\u0442\u0430 API, \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0442\u043e\u043a\u0435\u043d",
+                    "type": "string"
+                },
+                "user_id": {
+                    "description": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f, \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0442\u043e\u043a\u0435\u043d",
+                    "type": "string"
+                },
+                "user_email": {
+                    "description": "\u042d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u0430\u044f \u043f\u043e\u0447\u0442\u0430 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f, \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0442\u043e\u043a\u0435\u043d",
+                    "type": "string"
+                },
+                "organizations": {
+                    "description": "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438, \u043a \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u0435\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u0443 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OrganizationResponse"
+                    }
+                },
+                "orders": {
+                    "description": "\u0417\u0430\u043a\u0430\u0437\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c \u0441\u0434\u0435\u043b\u0430\u043b \u0432 \u0441\u0438\u0441\u0442\u0435\u043c\u0435",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistrationOrderResponse"
+                    }
+                }
+            }
+        },
+        "CustomMethodApiResponse": {
+            "required": [
+                "success",
+                "result"
+            ],
+            "properties": {
+                "success": {
+                    "description": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u0438",
+                    "type": "boolean"
+                },
+                "result": {
+                    "description": "\u041e\u0442\u0432\u0435\u0442 \u043a\u0430\u0441\u0442\u043e\u043c\u043d\u043e\u0433\u043e \u043c\u0435\u0442\u043e\u0434\u0430",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CustomMethodApiResponse"
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "timepad_implicit": {
+            "type": "oauth2",
+            "flow": "implicit",
+            "authorizationUrl": "/oauth/authorize",
+            "scopes": {
+                "add_events": "\u0434\u043e\u0431\u0430\u0432\u043b\u044f\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                "add_organizations": "\u0434\u043e\u0431\u0430\u0432\u043b\u044f\u0442\u044c \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                "edit_events": "\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+                "edit_organizations_hooks": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044e webhook'\u0430\u043c\u0438",
+                "view_private_organizations": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u043d\u0435\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u043c \u0441\u0432\u043e\u0439\u0441\u0442\u0432\u0430\u043c \u0441\u043e\u0431\u044b\u0442\u0438\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+                "view_private_events": "\u043f\u043e\u043b\u0443\u0447\u0430\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0441\u0432\u043e\u0438\u043c \u043d\u0435\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u043c \u0441\u043e\u0431\u044b\u0442\u0438\u044f\u043c \u0438 \u043d\u0435\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u043c \u0441\u0432\u043e\u0439\u0441\u0442\u0432\u0430\u043c \u0441\u0432\u043e\u0438\u0445 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "view_visitors": "\u043f\u043e\u043b\u0443\u0447\u0430\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0443 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u043e\u0432 \u0441\u0432\u043e\u0438\u0445 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "edit_visitors": "\u043f\u043e\u043b\u0443\u0447\u0430\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044e \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u043e\u0432 \u0441\u0432\u043e\u0438\u0445 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "add_cash_payments": "\u043f\u043e\u043b\u0443\u0447\u0430\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044e \u043f\u043b\u0430\u0442\u0435\u0436\u0430\u043c\u0438 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u043e\u0432 \u0441\u0432\u043e\u0438\u0445 \u0441\u043e\u0431\u044b\u0442\u0438\u0439",
+                "call_custom_methods": "\u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0432\u044b\u0437\u044b\u0432\u0430\u0442\u044c \u043a\u0430\u0441\u0442\u043e\u043c\u043d\u044b\u0435 \u043c\u0435\u0442\u043e\u0434\u044b \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438",
+            "description": "\u0410\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0438 \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438"
+        },
+        {
+            "name": "\u0421\u043e\u0431\u044b\u0442\u0438\u044f",
+            "description": "\u041f\u043e\u0438\u0441\u043a, \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0438 \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435"
+        },
+        {
+            "name": "\u0417\u0430\u043a\u0430\u0437\u044b",
+            "description": "\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435, \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0438 \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0437\u0430\u043a\u0430\u0437\u043e\u0432"
+        },
+        {
+            "name": "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438",
+            "description": "\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u0438 \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438"
+        },
+        {
+            "name": "Webhooks",
+            "description": "\u0420\u0430\u0431\u043e\u0442\u0430 \u0441 \u0441\u0438\u0441\u0442\u0435\u043c\u043e\u0439 webhooks"
+        },
+        {
+            "name": "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446",
+            "description": "\u041e\u043f\u043b\u0430\u0442\u044b \u043e\u0442 \u044e\u0440\u043b\u0438\u0446"
+        },
+        {
+            "name": "\u0421\u043b\u043e\u0432\u0430\u0440\u0438",
+            "description": "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0441\u043b\u043e\u0432\u0430\u0440\u0435\u0439"
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+dotnet pack ./TimepadClient -c Release --output ./

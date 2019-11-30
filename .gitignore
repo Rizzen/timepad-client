@@ -1,0 +1,9 @@
+src/.idea/*
+[Bb]in/
+[Oo]bj/
+src/.vscode/*
+src/.vs/*
+.vscode/*
+netframework4.5/nuget.exe
+nuget.exe
+*.nuget

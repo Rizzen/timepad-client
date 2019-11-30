@@ -1,0 +1,1 @@
+dotnet pack --configuration=Release --include-symbols --output bin/nupkgs
