@@ -3788,7 +3788,7 @@ namespace TimepadClient
         public string Url { get; }
     
         /// <summary>Картинка события</summary>
-        [Newtonsoft.Json.JsonProperty("poster_image", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("poster_image", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ImageResponse Poster_image { get; }
     
         /// <summary>Процент, который получают партнёры за продажу билета на это событие</summary>

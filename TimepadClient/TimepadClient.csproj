@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard1.1</TargetFrameworks>
         <PackageId>TimepadClient</PackageId>
-        <PackageVersion>1.0.0</PackageVersion>
+        <PackageVersion>1.0.1</PackageVersion>
         <Authors>TKachenko Mark</Authors>
         <PackageDescription>Unofficial API Client for Timepad</PackageDescription>
     </PropertyGroup>
